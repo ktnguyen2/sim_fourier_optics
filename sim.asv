@@ -37,18 +37,17 @@ cos_wave = cos_image_generation(30);
 % imshow(cos_wave);
 
 % Multiplication of Pattern and Sample in Regular Space = Complex Wave 
-complex_sample = cos_wave;
-% complex_sample = cos_wave.*sample_image;
+complex_sample = cos_wave.*sample_image;
 complex_sample2 = cos_wave2.*sample_image;
 % imshow(complex_sample)
 
 % Convert Complex Wave into Frequency space
 freq_complex_sample = fft2(complex_sample);
-% freq_complex_sample2 = fft2(complex_sample2);
+freq_complex_sample2 = fft2(complex_sample2);
 % m = abs(freq_complex_sample)
 % phase = unwrap()
-% imshow(freq_complex_sample)
-% figure(3);clf
+imshow(freq_complex_sample)
+figure(3);clf
 % reconstructed_image = ifft2(freq_complex_sample);
 % imshow(reconstructed_image)
 
@@ -59,21 +58,7 @@ freq_complex_sample = fft2(complex_sample);
 
 % Inverse Fourier Transform of image 
 
-x_lin = linspace(0,10,pixels);
-y_lin = cos(x_lin*pi/4)
-y_fft = fft(y_lin)
-xdft = fftshift(y_fft);
-plot(xdft,y_fft)
 
-%% Repeat all steps with phase shaped inputs
-% for i=1:3
-%     phase = 60*(i-1);
-%     cos_wave = cos_image_generation(phase)
-%     complex_sample = cos_wave.*sample_image;
-%     freq_complex_sample = fft2(complex_sample)
-% %     k0 = 
-% 
-% 
-% end
-
-
+% Repeat all steps with phase shaped inputs
+for i=1:3
+    
