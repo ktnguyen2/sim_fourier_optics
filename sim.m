@@ -52,10 +52,21 @@ freq_complex_sample = fft2(complex_sample);
 % reconstructed_image = ifft2(freq_complex_sample);
 % imshow(reconstructed_image)
 
-% Convert PSF into Frequency (just delta in spatial domain, constant in
-% frequency domain)
+% Multiply with PSF in Frequency Domain (Incoherent OTF for Circular Aperture)
 
-% Multiply the two
+w = pixels;
+lambda = 500e-3;
+z2 = 1;
+
+fx = linspace(0,w-1,w);
+fy = linspace(0,w-1,w);
+[FX,FY] = meshgrid(fx,fy);
+
+rho = FX.^2 + FY.^2;
+rho_0 = w/2/lambda/z2;
+H_incoh_freq = 2/pi * (acos(rho/2/rho_0) - rho/2/rho_0 * sqrt(1 - (rho/2/rho_0)^2));
+
+E_fft = I1_fft .* H_incoh_freq;
 
 % Inverse Fourier Transform of image 
 
